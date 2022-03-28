@@ -1,0 +1,14 @@
+@import url('../colors/colors.css');
+
+.btn-primary{
+    height: 3.125rem;
+    background-color: var(--rgb-dark);
+    border-color: var(--dark);
+    color: var(--white);
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.btn-get-into{
+    width: 195px;
+}

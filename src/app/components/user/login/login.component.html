@@ -1,0 +1,55 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="text-center title">Login</h2>
+                    <form [formGroup]="loginForm" (ngSubmit)="login()">
+                        <div class="mb-3">
+                            <input type="text" formControlName="user" class="form-control" placeholder="Email">
+                            <span 
+                                class="text-danger ml-3"
+                                *ngIf="loginForm.get('user')?.touched && loginForm.get('user')?.hasError('required')"
+                            >
+                                Email is <strong>required</strong>
+                            </span>
+                            <span 
+                                class="text-danger ml-3"
+                                *ngIf="loginForm.get('user')?.hasError('email')"
+                            >
+                                Email is no <strong>valid</strong>
+                            </span>
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" formControlName="password" class="form-control" placeholder="Password">
+                            <span 
+                                class="text-danger ml-3"
+                                *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.hasError('required')"
+                            >
+                                Password is <strong>required</strong>
+                            </span>
+                            <span 
+                                class="text-danger ml-3"
+                                *ngIf="loginForm.get('password')?.hasError('minlength')"
+                            >
+                                Password is no valid <strong>min 5 characteres</strong>
+                            </span>
+                            <span 
+                                class="text-danger ml-3"
+                                *ngIf="loginForm.get('password')?.hasError('maxlength')"
+                            >
+                                Password is no valid <strong>max 8 characteres</strong>
+                            </span>
+                        </div>
+                        <div class="text-center account">
+                            <a routerLink="/user/register">Register</a>
+                            <a routerLink="/user/recover-password">Recover password</a>
+                        </div>
+                        <button class="btn btn-secondary" routerLink="/">Return</button>
+                        <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary float-right">Go It</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
