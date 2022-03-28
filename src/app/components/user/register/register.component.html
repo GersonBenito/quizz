@@ -51,7 +51,7 @@
                             </span>
                             <span 
                                 class="text-success ml-3"
-                                *ngIf="registerForm.get('confirmPassword')?.touched && !registerForm?.hasError('notSame')"
+                                *ngIf="registerForm.get('confirmPassword')?.touched && registerForm.get('password')?.value !== '' && registerForm.get('confirmPassword')?.value !== '' && !registerForm?.hasError('notSame')"
                             >
                                 Password <strong>Match</strong>
                             </span>
