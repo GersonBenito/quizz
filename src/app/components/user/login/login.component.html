@@ -1,4 +1,7 @@
 <div class="container mt-5">
+    <div *ngIf="spinner" class="mb-5 d-flex justify-content-center">
+        <app-spinner></app-spinner>
+    </div>
     <div class="row">
         <div class="col-lg-6 offset-lg-3">
             <div class="card">
@@ -6,16 +9,16 @@
                     <h2 class="text-center title">Login</h2>
                     <form [formGroup]="loginForm" (ngSubmit)="login()">
                         <div class="mb-3">
-                            <input type="text" formControlName="user" class="form-control" placeholder="Email">
+                            <input type="text" formControlName="email" class="form-control" placeholder="Email">
                             <span 
                                 class="text-danger ml-3"
-                                *ngIf="loginForm.get('user')?.touched && loginForm.get('user')?.hasError('required')"
+                                *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.hasError('required')"
                             >
                                 Email is <strong>required</strong>
                             </span>
                             <span 
                                 class="text-danger ml-3"
-                                *ngIf="loginForm.get('user')?.hasError('email')"
+                                *ngIf="loginForm.get('email')?.hasError('email')"
                             >
                                 Email is no <strong>valid</strong>
                             </span>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { showAlert } from 'src/helpers/alert';
+import { UserService } from 'src/services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -9,11 +11,17 @@ import { showAlert } from 'src/helpers/alert';
 })
 export class RegisterComponent implements OnInit {
 
-  public registerForm: FormGroup
+  public registerForm: FormGroup;
+  public spinner: boolean = false;
 
-  constructor( private fb: FormBuilder ) { 
+  constructor( 
+    private fb: FormBuilder,
+    private userService: UserService, 
+    private router: Router,
+  ) { 
     this.registerForm = this.fb.group({
-      user: ['', [Validators.required, Validators.email]],
+      user: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(8)]],
       confirmPassword: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(8)]],
     }, { validator: this.checkPassword });
@@ -24,7 +32,23 @@ export class RegisterComponent implements OnInit {
 
   registerUser(): void{
     if(!this.registerForm.invalid){
-      console.log(this.registerForm.value);
+      const { user,email, password } = this.registerForm.value;
+      const newUser = {user, email, password };
+
+      this.spinner = true;
+      this.userService.createUser(newUser).subscribe({
+        next: (response) =>{
+          showAlert('Success!', response.message, 'success');
+        },
+        error: (error) =>{
+          this.spinner = false;
+          showAlert('Register invalid!', error.error.message, 'error');
+        },
+        complete: () =>{
+          this.spinner = false;
+          this.router.navigate(['/user']);
+        }
+      });
       
     }else{
       showAlert('Register invalid!', 'Please enter all fields', 'warning');
