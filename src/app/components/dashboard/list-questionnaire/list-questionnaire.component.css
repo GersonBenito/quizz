@@ -1,0 +1,20 @@
+@import url('../../../../styles/buttons/buttons.css');
+
+.bg-black{
+    background-color: rgb(51, 51, 51);
+    color: white;
+}
+
+.fas{
+    cursor: pointer;
+    font-size: 20px;
+    margin: 0px 2px;
+}
+
+.fa-chart-line{
+    color: darkcyan;
+}
+
+.fa-trash{
+    color: #a71c28;
+}

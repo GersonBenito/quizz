@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   ) {
     this.loginForm = this.fb.group({
       email: ['', [ Validators.required, Validators.email ]],
-      password: ['', [ Validators.required, Validators.minLength(5), Validators.maxLength(8) ]],
+      password: ['', [ Validators.required, Validators.minLength(5), Validators.maxLength(16) ]],
     });
   }
 
@@ -39,11 +39,13 @@ export class LoginComponent implements OnInit {
       this.spinner = true;
       this.loginService.login(user).subscribe({
         next: (response) =>{
-
+          console.log('rersponse', response);
+          
           const result = this.saveLocalStorage(response.data);
           if(result){
+            // TODO: falta verificar correo
             showAlert(`Welcome ${response.data?.user}!`, response.message, 'success');
-            // this.router.navigate(['']);
+            this.router.navigate(['/dashboard']);
           }
         }, 
         error: (error) =>{

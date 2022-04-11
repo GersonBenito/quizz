@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { NotFoundComponent } from './components/404/not-found.component';
 import { SharedModule } from './components/shared/shared.module';
+import { DashboardModule } from './components/dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { SharedModule } from './components/shared/shared.module';
     AppRoutingModule,
     SharedModule,
     HttpClientModule,
+    DashboardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
