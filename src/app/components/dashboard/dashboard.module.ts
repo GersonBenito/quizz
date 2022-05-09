@@ -2,10 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ListQuestionnaireComponent } from './list-questionnaire/list-questionnaire.component';
-import { CreatedQuizzComponent } from './dashboard/created-quizz/created-quizz.component';
+import { CreatedQuestionComponent } from './created-question/created-question.component';
+import { SharedModule } from '../shared/shared.module';
+import { CreatedQuizzComponent } from './created-quizz/created-quizz.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ListQuestionsComponent } from './list-questions/list-questions.component';
 
 
 @NgModule({
@@ -13,11 +16,14 @@ import { CreatedQuizzComponent } from './dashboard/created-quizz/created-quizz.c
     DashboardComponent,
     NavbarComponent,
     ListQuestionnaireComponent,
-    CreatedQuizzComponent
+    CreatedQuestionComponent,
+    CreatedQuizzComponent,
+    ListQuestionsComponent,
   ],
   imports: [
     CommonModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    SharedModule
   ]
 })
 export class DashboardModule { }

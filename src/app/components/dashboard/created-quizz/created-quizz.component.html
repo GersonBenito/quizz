@@ -1,0 +1,101 @@
+<div class="container">
+    <div class="row mt-3 mb-5">
+        <div class="col-lg-8 offset-lg-2">
+            <form [formGroup]="formQuestion" (ngSubmit)="addQuestion()">
+                <input type="text" placeholder="Enter question" formControlName="title" class="form-control input-question" maxlength="150">
+                <div class="row mt-5">
+                    <div class="col-lg-6 text-center">
+                        <div class="fondo-item">
+                            <p class="title-seconds">SECONDS</p>
+                            <p class="second">{{ seg }}</p>
+                            <div>
+                                <i class="fas fa-minus plus-rest" (click)="plusLess(-1)"></i>
+                                <i class="fas fa-plus plus-rest" (click)="plusLess(1)"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 text-center">
+                        <div class="fondo-item">
+                            <p class="title-seconds">SCORE</p>
+                            <p class="second">{{ scor }}</p>
+                            <input type="range" class="form-range" formControlName="score" min="0" max="2000">
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <div class="col-6">
+                        <div class="input-group mb-3" formGroupName="response1">
+                            <input type="text" formControlName="title" class="form-control input-answer" placeholder="Enter answer 1" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2">
+                                <i  
+                                    [ngClass]="{ 
+                                                'far fa-circle': statusResponse('response1') === false,
+                                                'fas fa-check-circle animate__animated animate__heartBeat': statusResponse('response1') === true
+                                            }"
+                                    (click)="isCorrect(1)"
+                                ></i>
+                              </span>
+                            </div>
+                          </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="input-group mb-3" formGroupName="response2">
+                            <input type="text" formControlName="title" class="form-control input-answer" placeholder="Enter answer 2" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2">
+                                <i  
+                                    [ngClass]="{ 
+                                                'far fa-circle': statusResponse('response2') === false,
+                                                'fas fa-check-circle animate__animated animate__heartBeat': statusResponse('response2') === true
+                                            }"
+                                    (click)="isCorrect(2)"
+                                ></i>
+                              </span>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="input-group mb-3" formGroupName="response3">
+                            <input type="text" formControlName="title" class="form-control input-answer" placeholder="Enter answer 3" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2">
+                                <i  
+                                    [ngClass]="{ 
+                                                'far fa-circle': statusResponse('response3') === false,
+                                                'fas fa-check-circle animate__animated animate__heartBeat': statusResponse('response3') === true
+                                            }"
+                                    (click)="isCorrect(3)"
+                                ></i>
+                              </span>
+                            </div>
+                          </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="input-group mb-3" formGroupName="response4">
+                            <input type="text" formControlName="title" class="form-control input-answer" placeholder="Enter answer 4" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2">
+                                  <i  
+                                    [ngClass]="{ 
+                                                    'far fa-circle': statusResponse('response4') === false,
+                                                    'fas fa-check-circle animate__animated animate__heartBeat': statusResponse('response4') === true
+                                                }"
+                                    (click)="isCorrect(4)"
+                                  ></i>
+                              </span>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12 text-center">
+                        <button class="btn btn-dark btn-primary">Add question</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
