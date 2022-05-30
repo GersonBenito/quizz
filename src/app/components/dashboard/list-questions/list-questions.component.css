@@ -1,0 +1,36 @@
+@import url('../../../../styles/colors/colors.css');
+@import url('../../../../styles/buttons/buttons.css');
+
+p{
+    margin-bottom: 0px;
+}
+
+.title-question{
+    text-align: center;
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.list-group-item{
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--dark);
+}
+
+.correct{
+    background: var(--dark-secondary);
+    color: var(--white);
+}
+
+.fas{
+    padding-top: 15px;
+    text-align: center;
+    font-size: 30px;
+    cursor: pointer;
+    color: var(--red-primary);
+}
+
+.finish button{
+    width: 100%;
+    font-size: 28px;
+}

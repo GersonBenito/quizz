@@ -1,4 +1,4 @@
-import { IResponse } from "./response.interface";
+import { IResponse } from "./responses.interface";
 
 export interface IQuestions{
     title: string;

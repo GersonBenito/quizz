@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { showAlert } from 'src/helpers/alert';
-import { IUser } from 'src/interfaces/user.interface';
+import { setLocalStorage } from 'src/helpers/helpers';
 import { LoginService } from 'src/services/login.service';
-import { SaveLocalStorageService } from 'src/services/save-local-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +18,6 @@ export class LoginComponent implements OnInit {
   constructor( 
     private fb: FormBuilder,
     private loginService: LoginService,
-    private saveLocalStorageService: SaveLocalStorageService,
     private router: Router,
   ) {
     this.loginForm = this.fb.group({
@@ -41,7 +39,8 @@ export class LoginComponent implements OnInit {
         next: (response) =>{
           console.log('rersponse', response);
           
-          const result = this.saveLocalStorage(response.data);
+          // const result = this.saveLocalStorage(response.data);
+          const result = setLocalStorage('user', response.data)
           if(result){
             // TODO: falta verificar correo
             showAlert(`Welcome ${response.data?.user}!`, response.message, 'success');
@@ -61,23 +60,6 @@ export class LoginComponent implements OnInit {
       showAlert('Login invalid!', 'Please enter all fields', 'warning');
     }
     
-  }
-
-  saveLocalStorage(user: IUser | undefined): boolean {
-    console.log('response', user);
-    
-    let result: boolean = false;
-    this.saveLocalStorageService.saveLocalStorage(user).subscribe({
-      next: (response) =>{
-        console.log('result in save local storage', response);
-        result = response;
-      },
-      error: (error) =>{
-        result = false;
-      }
-    });
-
-    return result;
   }
 
 }

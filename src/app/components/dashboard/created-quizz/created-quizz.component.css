@@ -1,4 +1,6 @@
+@import url('../../../../styles/colors/colors.css');
 @import url('../../../../styles/buttons/buttons.css');
+
 
 .input-question{
     font-family: 'Montserrat', sans-serif;
@@ -7,7 +9,7 @@
 }
 
 .fondo-item{
-    background: #131d2d;
+    background: var(--dark-secondary);
     border-radius: 20px;
     height: 170px;
 }
@@ -15,18 +17,18 @@
 .title-seconds{
     font-size: 35px;
     font-weight: 800;
-    color: white;
+    color: var(--white);
     font-family: 'Montserrat', sans-serif;
 }
 
 .second{
     font-size: 20px;
     font-weight: 800;
-    color: white;
+    color: var(--white);
 }
 
 .plus-rest{
-    color: white;
+    color: var(--white);
     cursor: pointer;
     font-size: 24px;
     background: #273346;
@@ -37,7 +39,7 @@
 
 /* TODO: revisar */
 input[type=range]{
-    background: white;
+    background: var(--white);
     font-size: 1.5rem;
 }
 

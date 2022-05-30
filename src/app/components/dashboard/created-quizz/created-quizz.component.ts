@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { showAlert } from 'src/helpers/alert';
+import { IQuestions } from 'src/interfaces/questions.interface';
+import { IResponse } from 'src/interfaces/responses.interface';
 import { QuizzService } from 'src/services/quizz.service';
 
 @Component({
@@ -11,6 +13,7 @@ import { QuizzService } from 'src/services/quizz.service';
 export class CreatedQuizzComponent implements OnInit {
 
   public formQuestion: FormGroup;
+  public arrayResponse: string[] = ['response1', 'response2', 'response3', 'response4'];
 
   constructor(
     private _quizzService: QuizzService,
@@ -41,10 +44,7 @@ export class CreatedQuizzComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
-    console.log('title', this._quizzService.titleQuestionnaire, 'description', this._quizzService.descriptionQuestionnaire);
-    
-  }
+  ngOnInit(): void {}
 
   // para retornar el valor de los segundos en el formulario, debido a que no es in input
   get seg(){ return this.formQuestion.get('seconds')?.value };
@@ -60,8 +60,16 @@ export class CreatedQuizzComponent implements OnInit {
       showAlert('Warning','Response true no select', 'warning');
       return;
     }
-    console.log('form', this.formQuestion);
     
+    const question: IQuestions = {
+      title: this.formQuestion.get('title')?.value || '',
+      score: this.formQuestion.get('score')?.value || '',
+      seconds: this.formQuestion.get('seconds')?.value || '',
+      listResponse: this.getResponses(),
+    }
+    
+    this._quizzService.setQuestion(question);
+    this.resetForm();
   }
 
   // method for plus or less
@@ -94,10 +102,9 @@ export class CreatedQuizzComponent implements OnInit {
   }
 
   setFalseResponse(response: string){
-    const arrayResponse: string[] = ['response1', 'response2', 'response3', 'response4'];
-    for(let i = 0; i< arrayResponse.length; i++){
-      if(arrayResponse[i] !== response){
-        this.formQuestion.get(arrayResponse[i])?.patchValue({
+    for(let i = 0; i< this.arrayResponse.length; i++){
+      if(this.arrayResponse[i] !== response){
+        this.formQuestion.get(this.arrayResponse[i])?.patchValue({
           isTrue: false,
         });
       }
@@ -106,13 +113,54 @@ export class CreatedQuizzComponent implements OnInit {
 
   // verify if all questions are false
   allResponsesFalse(): boolean{
-    const arrayResponse: string[] = ['response1', 'response2', 'response3', 'response4'];
-    for(let i = 0; i< arrayResponse.length; i++){
-      if(this.formQuestion.get(arrayResponse[i])?.get('isTrue')?.value){
+    for(let i = 0; i< this.arrayResponse.length; i++){
+      if(this.formQuestion.get(this.arrayResponse[i])?.get('isTrue')?.value){
         return false;
       }
     }
     return true;
+  }
+
+  getResponses(): IResponse[]{
+    let listResponses: IResponse[] = [];
+
+    for(let i = 0; i< this.arrayResponse.length; i++){
+      const titleResponse = this.formQuestion.get(this.arrayResponse[i])?.get('title')?.value;
+      const isTrueResponse = this.formQuestion.get(this.arrayResponse[i])?.get('isTrue')?.value;
+      const response: IResponse = {
+        title: titleResponse,
+        isTrue: isTrueResponse,
+      }
+
+      listResponses.push(response)
+      
+    }
+
+    return listResponses
+  }
+
+  resetForm(){
+    this.formQuestion.patchValue({
+      title: '',
+      seconds: 10,
+      score: 1000,
+      response1: {
+        title: '',
+        isTrue: false
+      },
+      response2: {
+        title: '',
+        isTrue: false
+      },
+      response3: {
+        title: '',
+        isTrue: false
+      },
+      response4: {
+        title: '',
+        isTrue: false
+      },
+    });
   }
 
 }
