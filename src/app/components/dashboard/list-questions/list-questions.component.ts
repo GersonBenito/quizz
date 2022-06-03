@@ -48,8 +48,15 @@ export class ListQuestionsComponent implements OnInit {
       listQuestion: this.listQuestions
     }
 
-    showAlert('Success!', 'Questionnaire added success', 'success');
-    this.router.navigate(['/dashboard']);
+    this._quizzService.createQuizz(questionnaire).subscribe({
+      next: response =>{
+        showAlert('Success!', response.message, 'success');
+        this.router.navigate(['/dashboard']);
+      },
+      error: errror =>{
+        showAlert('Success!', errror.error.message, 'error');
+      }
+    });
   }
 
 }
