@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
           const result = setLocalStorage('user', response.data)
           if(result){
             // TODO: falta verificar correo
-            showAlert(`Welcome ${response.data?.user}!`, response.message, 'success');
+            showAlert(`Welcome ${response.data?.userName}!`, response.message, 'success');
             this.router.navigate(['/dashboard']);
           }
         }, 

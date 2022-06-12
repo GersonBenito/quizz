@@ -4,6 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { environment as env } from 'src/environments/environment';
 import { IQuestionnaire } from 'src/interfaces/questionnaire.interface';
 import { IQuestions } from 'src/interfaces/questions.interface';
+import { IQuizzResponse } from 'src/interfaces/repsonse.quizz';
 import { IResponse } from 'src/interfaces/response.interface';
 
 
@@ -31,6 +32,10 @@ export class QuizzService {
 
   createQuizz(questionnaire: IQuestionnaire): Observable<IResponse>{
     return this.http.post<IResponse>(`${this.urlBase}/quizz`, questionnaire);
+  }
+
+  getQuizzByIdUser(_id: string | undefined): Observable<IQuizzResponse>{
+    return this.http.get<IQuizzResponse>(`${this.urlBase}/quizz/${_id}`);
   }
 
 }

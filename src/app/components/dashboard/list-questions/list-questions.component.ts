@@ -14,6 +14,7 @@ import { QuizzService } from 'src/services/quizz.service';
 export class ListQuestionsComponent implements OnInit {
 
   public listQuestions: IQuestions[] = [];
+  public loading: boolean = false;
 
   constructor(
     private _quizzService: QuizzService,
@@ -38,8 +39,9 @@ export class ListQuestionsComponent implements OnInit {
   }
 
   finishQuestionnaire(){
+    this.loading = true;
     const questionnaire: IQuestionnaire = {
-      _id: getLocalStorage('user')?._id,
+      user: getLocalStorage('user')?._id,
       title: this._quizzService.titleQuestionnaire,
       description: this._quizzService.descriptionQuestionnaire,
       code: generateCode(),
@@ -55,6 +57,10 @@ export class ListQuestionsComponent implements OnInit {
       },
       error: errror =>{
         showAlert('Success!', errror.error.message, 'error');
+        this.loading = false;
+      },
+      complete: () =>{
+        this.loading = false;
       }
     });
   }

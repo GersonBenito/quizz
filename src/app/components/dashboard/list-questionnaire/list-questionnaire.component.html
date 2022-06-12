@@ -17,47 +17,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Mundial de futbol</td>
-                                <td>10</td>
-                                <td><span class="badge bg-black">MNG8G</span></td>
+                            <tr *ngFor="let questionnaire of listQuestionnaire">
+                                <td>{{ questionnaire.title }}</td>
+                                <td>{{ questionnaire.numberQuestion }}</td>
+                                <td><span class="badge bg-black">{{ questionnaire.code }}</span></td>
                                 <td>
                                     <i class="fas fa-search"></i>
                                     <i class="fas fa-chart-line"></i>
                                     <i class="fas fa-trash"></i>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>Mundial de futbol</td>
-                                <td>10</td>
-                                <td><span class="badge bg-black">MNG8G</span></td>
-                                <td>
-                                    <i class="fas fa-search"></i>
-                                    <i class="fas fa-chart-line"></i>
-                                    <i class="fas fa-trash"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Mundial de futbol</td>
-                                <td>10</td>
-                                <td><span class="badge bg-black">MNG8G</span></td>
-                                <td>
-                                    <i class="fas fa-search"></i>
-                                    <i class="fas fa-chart-line"></i>
-                                    <i class="fas fa-trash"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Mundial de futbol</td>
-                                <td>10</td>
-                                <td><span class="badge bg-black">MNG8G</span></td>
-                                <td>
-                                    <i class="fas fa-search"></i>
-                                    <i class="fas fa-chart-line"></i>
-                                    <i class="fas fa-trash"></i>
-                                </td>
-                            </tr>
-                            
                         </tbody>
                     </table>
                 </div>

@@ -9,10 +9,10 @@
                     <h3 class="text-center title">Register User</h3>
                     <form [formGroup]="registerForm" (submit)="registerUser()" >
                         <div class="mb-3">
-                            <input type="text" formControlName="user" class="form-control" placeholder="User">
+                            <input type="text" formControlName="userName" class="form-control" placeholder="User name">
                             <span 
                                 class="text-danger ml-3"
-                                *ngIf="registerForm.get('user')?.touched && registerForm.get('user')?.hasError('required')"
+                                *ngIf="registerForm.get('userName')?.touched && registerForm.get('userName')?.hasError('required')"
                             >
                                 Name is <strong>required</strong>
                             </span>
