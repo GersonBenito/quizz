@@ -1,5 +1,8 @@
-<div class="container-control">
-    <input type="text" class="form-control get-into" placeholder="PIN of game" [(ngModel)]="pin">
+<div class="container-control" *ngIf="loading">
+    <app-spinner></app-spinner>
+</div>
+<div class="container-control" *ngIf="!loading">
+    <input type="text" class="form-control get-into" placeholder="CODE of game" [(ngModel)]="code">
     <button class="btn btn-dark btn-get-into btn-primary mt-3" (click)="getPin()">Get Into</button>
 </div>
 <div class="fixed-bottom">
