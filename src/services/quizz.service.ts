@@ -38,4 +38,12 @@ export class QuizzService {
     return this.http.get<IQuizzResponse>(`${this.urlBase}/quizz/${_id}`);
   }
 
+  deleteQuizz(_id: string): Observable<IResponse>{
+    return this.http.delete<IResponse>(`${this.urlBase}/quizz/${_id}`);
+  }
+
+  getQuizzById(_id: string): Observable<IResponse>{
+    return this.http.get<IResponse>(`${this.urlBase}/quizz/details/${_id}`);
+  }
+
 }

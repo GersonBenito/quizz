@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { showAlert } from 'src/helpers/alert';
 import { getLocalStorage } from 'src/helpers/helpers';
 import { IQuestionnaire } from 'src/interfaces/questionnaire.interface';
 import { QuizzService } from 'src/services/quizz.service';
@@ -11,12 +12,12 @@ import { QuizzService } from 'src/services/quizz.service';
 export class ListQuestionnaireComponent implements OnInit {
 
   public listQuestionnaire: IQuestionnaire[] | undefined = [];
+  public _id: string | undefined = getLocalStorage('user')?._id;
 
   constructor(
     private _quizzService: QuizzService,
   ) { 
-    const _id = getLocalStorage('user')?._id;
-    this.getQuizzByIdUser(_id);
+    this.getQuizzByIdUser(this._id);
   }
 
   ngOnInit(): void {
@@ -30,7 +31,22 @@ export class ListQuestionnaireComponent implements OnInit {
       },
       error: error =>{
         console.log('error', error);
-        
+        showAlert('Error', error.message, 'error');
+      }
+    });
+  }
+
+  deleteQuestionnaire(_id: string){
+    console.log('id', _id);
+    this._quizzService.deleteQuizz(_id).subscribe({
+      next: response =>{
+        showAlert('Success', response.message, 'success');
+      },
+      error: error =>{
+        showAlert('Error', error.message, 'error');
+      },
+      complete: () =>{
+        this.getQuizzByIdUser(this._id);
       }
     });
   }

@@ -1,0 +1,13 @@
+
+@import url('../../../../styles/colors/colors.css');
+
+.list-group-item{
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--dark);
+}
+
+.correct{
+    background-color: var(--dark-secondary);
+    color: var(--white);
+}

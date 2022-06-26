@@ -22,9 +22,14 @@
                                 <td>{{ questionnaire.numberQuestion }}</td>
                                 <td><span class="badge bg-black">{{ questionnaire.code }}</span></td>
                                 <td>
-                                    <i class="fas fa-search"></i>
+                                    <i class="fas fa-search" [routerLink]="['view-questionnaire', questionnaire._id]"></i>
                                     <i class="fas fa-chart-line"></i>
-                                    <i class="fas fa-trash"></i>
+                                    <i class="fas fa-trash" (click)="deleteQuestionnaire(questionnaire._id!)"></i>
+                                </td>
+                            </tr>
+                            <tr *ngIf="listQuestionnaire?.length === 0">
+                                <td colspan="4">
+                                    <h3>Data empty</h3>
                                 </td>
                             </tr>
                         </tbody>
