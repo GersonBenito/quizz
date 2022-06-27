@@ -1,0 +1,23 @@
+@import url('../../../../styles/colors/colors.css');
+
+.counter{
+    font-size: 5rem;
+}
+
+.list-group-item{
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--dark);
+    cursor: pointer;
+}
+
+.selected{
+    background-color: var(--dark-secondary);
+    color: var(--white);
+}
+
+.btn-dark{
+    background-color: var(--dark-secondary);
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+}

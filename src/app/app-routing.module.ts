@@ -6,7 +6,14 @@ import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'user', loadChildren: () => import('./components/user/user.module').then( m => m.UserModule ) },
+  { 
+    path: 'user', 
+    loadChildren: () => import('./components/user/user.module').then( m => m.UserModule ) 
+  },
+  {
+    path: 'play',
+    loadChildren: () => import('./components/play/play.module').then( m => m.PlayModule )
+  },
   { 
     path: 'dashboard', 
     component: DashboardComponent, 

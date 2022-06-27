@@ -1,0 +1,23 @@
+<div class="container mt-3">
+    <div class="d-flex justify-content-center mt-3">
+        <h1 class="title counter animate__animated animate__heartBeat">{{ counterSeconds }}</h1>
+    </div>
+    <div class="mt-2">
+        <div class="text-center">
+            <h3 class="title">{{ getDataQuiz()?.title }}</h3>
+            <div class="col-lg-6 offset-lg-3">
+                <ul class="list-group mt-3">
+                    <li 
+                        *ngFor="let response of getDataQuiz()?.listResponse; let i = index" 
+                        class="list-group-item animate__animated animate__fadeIn"
+                        (click)="selectedResponse(response, i)"
+                        [ngClass]="addClassOption(response)"
+                    >
+                        {{ response.title }}
+                    </li>
+                </ul>
+                <button [disabled]="!optionSelected" (click)="nextQuestion()" class="btn btn-dark btn-block mt-3">Agree</button>
+            </div>
+        </div>
+    </div>
+</div>
