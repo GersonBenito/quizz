@@ -44,12 +44,12 @@
                                 Password is no valid <strong>max 8 characteres</strong>
                             </span>
                         </div>
+                        <button class="btn btn-secondary" routerLink="/">Return</button>
+                        <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary float-right">Go It</button>
                         <div class="text-center account">
                             <a routerLink="/user/register">Register</a>
                             <a routerLink="/user/recover-password">Recover password</a>
                         </div>
-                        <button class="btn btn-secondary" routerLink="/">Return</button>
-                        <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary float-right">Go It</button>
                     </form>
                 </div>
             </div>

@@ -1,0 +1,46 @@
+@import url('../../../../styles/colors/colors.css');
+
+h1{
+    margin-bottom: 0px;
+}
+h2{
+    margin-bottom: 0px;
+}
+h3{
+    margin-bottom: 0px;
+}
+h4{
+    margin-bottom: 0px;
+}
+h5{
+    margin-bottom: 0px;
+}
+h6{
+    margin-bottom: 0px;
+}
+
+.list-group-item{
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--dark);
+}
+
+.btn-dark{
+    font-size: 28px;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 1px;
+    background-color: var(--dark);
+}
+
+.bg-dark{
+   background: var(--dark) !important;
+   color: var(--white);
+}
+.bg-success{
+   color: var(--white);
+}
+.bg-danger{
+   color: var(--white);
+}
+
+

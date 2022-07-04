@@ -41,4 +41,12 @@ export class ResponseQuizService {
     }
   }
 
+  saveUserResponse(userResponse: any): Observable<any>{
+    return this.http.post(`${this.urlBase}/response`, userResponse);
+  }
+  
+  getUserResponseById(_id: string): Observable<any>{
+    return this.http.get(`${this.urlBase}/response/${_id}`);
+  }
+
 }
