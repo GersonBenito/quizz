@@ -1,0 +1,51 @@
+<div class="container">
+    <div *ngIf="loading" class="d-flex justify-content-center align-items-center spinner">
+        <app-spinner></app-spinner>
+    </div>
+    <div *ngIf="!loading" class="d-flex justify-content-center mt-3">
+        <div class="card title">
+            <div class="card-body">
+                <h2 class="title">LIST RESPONSES</h2>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="card">
+                <div class="card-body text-center">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                               <th>Participant</th> 
+                               <th>Date</th> 
+                               <th>Scors</th> 
+                               <th>Actions</th> 
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let response of listUserResponse">
+                                <td>{{ response.participantName }}</td>
+                                <td>{{ response.date | date:'dd/mm/yyyy' }}</td>
+                                <td>{{ response.scoreTotal }}</td>
+                                <td class="d-flex justify-content-around">
+                                    <i [routerLink]="['/dashboard/admin-response', response._id]" class="fas fa-search text-info"></i>
+                                    <i (click)="deleteUserResponse(response._id)" class="fas fa-trash text-danger"></i>
+                                </td>
+                            </tr>
+                            <tr *ngIf="listUserResponse.length === 0">
+                               <td colspan="4">
+                                    <h3>Data empty</h3>
+                               </td> 
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-lg-8 offset-lg-2">
+            <button (click)="previus()" class="btn btn-dark btn-block">RETURN</button>
+        </div>
+    </div>
+</div>

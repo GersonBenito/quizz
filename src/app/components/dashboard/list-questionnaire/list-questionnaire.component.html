@@ -23,7 +23,7 @@
                                 <td><span class="badge bg-black">{{ questionnaire.code }}</span></td>
                                 <td>
                                     <i class="fas fa-search" [routerLink]="['view-questionnaire', questionnaire._id]"></i>
-                                    <i class="fas fa-chart-line"></i>
+                                    <i class="fas fa-chart-line" [routerLink]="['statistics', questionnaire._id]"></i>
                                     <i class="fas fa-trash" (click)="deleteQuestionnaire(questionnaire._id!)"></i>
                                 </td>
                             </tr>

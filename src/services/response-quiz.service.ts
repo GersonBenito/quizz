@@ -49,4 +49,12 @@ export class ResponseQuizService {
     return this.http.get(`${this.urlBase}/response/${_id}`);
   }
 
+  getResponsesByIdQuiz(_id: string): Observable<any>{
+    return this.http.get(`${this.urlBase}/response/statistics/${_id}`);
+  }
+
+  deleteUserResponse(_id: string): Observable<any>{
+    return this.http.delete(`${this.urlBase}/response/${_id}`);
+  }
+
 }

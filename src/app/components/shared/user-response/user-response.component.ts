@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { showAlert } from 'src/helpers/alert';
 import { ResponseQuizService } from 'src/services/response-quiz.service';
 
@@ -13,6 +13,7 @@ export class UserResponseComponent implements OnInit {
   public id: string = '';
   public loading: boolean = false;
   public userResponses: any;
+  public previusRouter: string = '';
 
   constructor(
     private _responseQuizService: ResponseQuizService,
@@ -21,6 +22,7 @@ export class UserResponseComponent implements OnInit {
   ) { 
     this.id = this.aRouter.snapshot.paramMap.get('id')!; // operator ! not null acertion of TypeScript, say return a string and not a string or null
     this.getUserResponseById(this.id);
+    this.previusRouter = this.aRouter.snapshot.url[0].path;
   }
 
   ngOnInit(): void {
@@ -42,7 +44,11 @@ export class UserResponseComponent implements OnInit {
   }
 
   returnHome(){
-    this.router.navigate(['/']);
+    if(this.previusRouter === 'admin-response'){
+      this.router.navigate(['dashboard/statistics', this.userResponses.idQuiz]);
+    }else{
+      this.router.navigate(['/']);
+    }
   }
 
 }

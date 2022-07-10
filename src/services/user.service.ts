@@ -18,4 +18,11 @@ export class UserService {
     return this.http.post<IResponse>(`${this.urlBase}/user`, user);
   }
 
+  // TODO: add token in the backend
+  getToken(){
+    const user = localStorage.getItem('user');
+    const token = JSON.parse(user || '{}');
+    return token._id;
+  }
+
 }
