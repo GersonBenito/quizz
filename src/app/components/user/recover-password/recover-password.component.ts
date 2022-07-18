@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { showAlert } from 'src/helpers/alert';
-import { LoginService } from 'src/services/login.service';
+import { setLocalStorage } from 'src/helpers/helpers';
+import { AuthService } from 'src/services/auth.service';
 
 @Component({
   selector: 'app-recover-password',
@@ -15,7 +16,7 @@ export class RecoverPasswordComponent implements OnInit {
 
   constructor( 
     private fb: FormBuilder,
-    private loginServices: LoginService, 
+    private authService: AuthService, 
     private router: Router,
   ) {
     this.recoverForm = this.fb.group({
@@ -32,10 +33,10 @@ export class RecoverPasswordComponent implements OnInit {
       const { email } = user;
       console.log('email user', email);
       
-      this.loginServices.recoverPassword(email).subscribe({
+      this.authService.recoverPassword(email).subscribe({
         next: (response) =>{
-          // TODO: se usara redux y NgRx para el manejo de estado
           const id = response.data?._id;
+          setLocalStorage('user', response.data)
           showAlert('Success', response.message, 'success');
           this.router.navigate([`user/change-password/${id}`]);
         },

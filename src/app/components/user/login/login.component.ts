@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { showAlert } from 'src/helpers/alert';
 import { setLocalStorage } from 'src/helpers/helpers';
-import { LoginService } from 'src/services/login.service';
+import { AuthService } from 'src/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   constructor( 
     private fb: FormBuilder,
-    private loginService: LoginService,
+    private authService: AuthService,
     private router: Router,
   ) {
     this.loginForm = this.fb.group({
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
       const { email, password } = this.loginForm.value;
       const user = { email, password };
       this.spinner = true;
-      this.loginService.login(user).subscribe({
+      this.authService.login(user).subscribe({
         next: (response) =>{
           console.log('rersponse', response);
           

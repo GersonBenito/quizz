@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { showAlert } from 'src/helpers/alert';
-import { UserService } from 'src/services/user.service';
+import { AuthService } from 'src/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
 
   constructor( 
     private fb: FormBuilder,
-    private userService: UserService, 
+    private authService: AuthService, 
     private router: Router,
   ) { 
     this.registerForm = this.fb.group({
@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit {
       const newUser = {userName, email, password };
 
       this.spinner = true;
-      this.userService.createUser(newUser).subscribe({
+      this.authService.createUser(newUser).subscribe({
         next: (response) =>{
           showAlert('Success!', response.message, 'success');
         },

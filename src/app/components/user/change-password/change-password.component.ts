@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, Routes } from '@angular/router';
 import { showAlert } from 'src/helpers/alert';
-import { LoginService } from 'src/services/login.service';
+import { AuthService } from 'src/services/auth.service';
 
 @Component({
   selector: 'app-change-password',
@@ -18,7 +18,7 @@ export class ChangePasswordComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private aRoute: ActivatedRoute,
-    private loginService: LoginService,
+    private authService: AuthService,
   ) { 
     this.changePassword = this.fb.group({
       password: ['', Validators.required],
@@ -41,7 +41,7 @@ export class ChangePasswordComponent implements OnInit {
     const { password } = this.changePassword.value;
     console.log({password});
     
-    this.loginService.changePassword(this.IdUser, { password }).subscribe({
+    this.authService.changePassword(this.IdUser, { password }).subscribe({
       next: (response) =>{
         showAlert('Success', response.message, 'success');
       },
